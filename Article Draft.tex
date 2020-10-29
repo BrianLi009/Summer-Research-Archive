@@ -1,0 +1,77 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX, XeLaTeX, or LuaTeX
+\usepackage{ifxetex,ifluatex}
+\if\ifxetex T\else\ifluatex T\else F\fi\fi T%
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage[utf8]{inputenc}
+\usepackage{setdeck}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+
+
+\title{Title}
+\author{Name of Author}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% http://doc.sagemath.org/html/en/tutorial/sagetex.html
+% \usepackage{sagetex}
+
+% Enable PythonTeX to run Python – https://ctan.org/pkg/pythontex
+% \usepackage{pythontex}
+
+\begin{document}
+\maketitle
+
+A mathemagician asks five spectators to select cards from a packet of thirty-two cards. Everyone holding red cards is asked to step forward. By knowing the position of every red card within five selected cards, the magician can mysteriously deduce all five cards’ ranks and suits. It is remarkable that such a feat is possible. This trick, called “In Cycles”, relies on the combinatorics of de Bruijn sequences. The magician’s secret is that the deck has been arranged to have special combinatorial properties.
+
+Here we extend “In Cycles” to what we call the “In Tetracycles” trick using a deck for the card game SET. In the game of SET, each card is unique and consists of four features. The features are shape, color, number, and shadings. The magician cut the deck repeatedly and handed out four consecutive cards to the volunteers, similar to “In Cycles”. Then the magician allows volunteers to pick a feature they prefer to describe. Let us assume the volunteers choose colour as the feature to describe. By asking two questions regarding this feature such as “Would all of you with a green card please stand up?” and “Would all of you with a red card please stand up?”, the magician can name all four cards accurately, including their shapes, colors, number of shapes, and shadings.
+
+In section one, we shall explore the structure and symmetry of the SET deck and discuss how these properties are being applied in the “In Tetracycles” trick. In section two, we will discuss the mathematics of de Bruijn sequences and show how they are generated. In section three, we will provide the pseudocode that helps us implement this trick and suggest generalizations.
+
+\newpage
+
+SET was invented during genetic research in Cambridge, England back in 1974. Marsha Jean Falco, the inventor of the game created file cards to represent and categorize each dog’s traits using symbols rather than data. Different symbols with different properties represented different traits. Marsha discovered the fun in finding the different combinations and SET was born.
+
+Each feature has three possible categories in SET. For each card, the shape could either be oval, squiggle, or diamond, the colors could either be red, green, or purple, the number could either be one, two, or three, and the shading could either be solid, unfilled, or stripped. Since each card is unique, we have in total $3^4=81$ cards in the game. We can utilize these properties to create intruiging variations and tricks.
+
+In order to investigate the combinatorics properties of SET, we are motivated to label each card with its algebraic representation. Since there are four features, each of which has $3$ possible values, we can associate each card in the SET deck with an element in the set $D = Z_3 \times Z_3 \times Z_3 \times Z_3$. We simply assign a $1$, $2$, or $0$ with each of the three possible values for a given characteristic as defined below.
+
+\textbf{Definition 1.0:} For a card in the game of set, the card can be expressed as a $4$-number tuple $(x_{1},x_{2},x_{3},x_{4})$ such that $x_{i}$ describes a unique feature according to the following table:
+
+\begin{center}
+\begin{longtable}{ |c|c|c|c|c|c| }
+\hline
+Shape  &  Color  &  Number  &  Filling\\
+oval $\rightarrow  1$ & red $\rightarrow 1$ & one $\rightarrow  1$ & solid $\rightarrow 1$ \\
+squiggle $\rightarrow 2$ & green $\rightarrow  2$ &  two $\rightarrow 2$ & unfilled $\rightarrow 2$ \\
+diamond $\rightarrow  0$ &    purple $\rightarrow  0$ & three $\rightarrow  0$ & striped $\rightarrow 0$ \\
+ \hline
+
+\textbf{Example 1.1:} Express the following cards algebraically.
+
+- <img src="https://i.ibb.co/r6QPPgC/22.jpg" width=10% height=10%> : the card has oval shape ($1$), color green ($2$), two shapes ($2$), and unfilled shading
+ ($2$). Therefore this card correspond to the tuple $(1,2,2,2)$.
+- <img src="https://i.ibb.co/fQB2Lwn/33.jpg" width=10% height=10%> : the card has squiggle shape ($2$), color red ($1$), three shapes ($3$), solid shading ($1$). Therefore the card corresponds to the tuple $(2, 1, 3, 1)$.
+- <img src="https://i.ibb.co/dDyPCm9/11.jpg" width=10% height=10%> : the card has diamond shape ($0$), color purple ($0$), one shape ($1$), striped shading ($0$). Therefore the card corresponds to the tuple $(0,0,1,0)$.
+
+
+\end{longtable}
+\end{center}
+
+
+
+
+
+
+\end{document}
